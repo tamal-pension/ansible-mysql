@@ -1,0 +1,26 @@
+---
+discord_webhook: https://discord.com/api/webhooks/{{ discord_message_webhook_id }}/{{ discord_message_webhook_token }}
+discord_channel: "#notifications"
+private_dns: mysql
+private_domain: pension-stg.local
+app_user: "mysql"
+app_group: "{{ app_user }}"
+users_groups:
+  - name: "{{ app_group }}"
+users:
+  - name: "{{ app_user }}"
+    group: "{{ app_group }}"
+    append: yes
+disk:
+    name: /dev/sdb
+    mount_options: defaults,noatime
+    mount: /data
+    size: 100 
+    fstype: xfs
+    data_folder: lib
+    user: "{{ app_user }}"
+    group: "{{ app_group }}"
+    kms_key_id: "{{ disk_kms_key_id }}"
+private_ip: "{{ ansible_default_ipv4['address'] }}"
+access_file_url: "https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/master/access.yml"
+access_remote_base_path: "/ansible-mysql/vars/access.yml"
