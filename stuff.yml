@@ -9,6 +9,10 @@
       value: "{{ private_ip }}"
       private: true
       ttl: 120
+    tags_facts:
+      private_dns: "private_dns"
+      private_domain: "private_domain"
+      root_password: "root_password"
 
 - include_role:
     name: mysql

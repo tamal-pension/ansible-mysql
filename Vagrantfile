@@ -8,19 +8,18 @@
 TOPIC_NAME = "pre_playbook_errors"
 ACCOUNT_ID = "339712742264"
 AWS_REGION = "eu-west-1"
-ES_CLUSTER = 'pension-test-#{Etc.getpwuid(Process.uid).name}'
 Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: <<-SHELL  
-  set -euxo pipefail
-  echo "start vagrant file"
-  cd /vagrant
-  aws s3 cp s3://resource-pension-stg/get-pip.py - | python3
-  echo $PWD
-  export VAULT_PASSWORD=#{`op read "op://Security/ansible-vault inqwise-stg/password"`.strip!}
-  echo "$VAULT_PASSWORD" > vault_password
-  curl -s https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/master/main_amzn2023.sh | bash -s -- -r #{AWS_REGION} -e "playbook_name=mysql-test discord_message_owner_name=#{Etc.getpwuid(Process.uid).name}" --topic-name #{TOPIC_NAME} --account-id #{ACCOUNT_ID}
-  rm vault_password
-SHELL
+    set -euxo pipefail
+    echo "start vagrant file"
+    cd /vagrant
+    aws s3 cp s3://resource-pension-stg/get-pip.py - | python3
+    echo $PWD
+    export VAULT_PASSWORD=#{`op read "op://Security/ansible-vault tamal-pension-stg/password"`.strip!}
+    echo "$VAULT_PASSWORD" > vault_password
+    curl -s https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/master/main_amzn2023.sh | bash -s -- -r #{AWS_REGION} -e "playbook_name=mysql-test discord_message_owner_name=#{Etc.getpwuid(Process.uid).name}" --topic-name #{TOPIC_NAME} --account-id #{ACCOUNT_ID}
+    rm vault_password
+  SHELL
 
   config.vm.provider :aws do |aws, override|
   	override.vm.box = "dummy"
