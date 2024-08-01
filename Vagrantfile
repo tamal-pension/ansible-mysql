@@ -25,8 +25,8 @@ Vagrant.configure("2") do |config|
   	override.vm.box = "dummy"
     override.ssh.username = "ec2-user"
     override.ssh.private_key_path = "~/.ssh/id_rsa"
-    aws.access_key_id             = `op read "op://Employee/aws pension-stg/Security/Access key ID"`.strip!
-    aws.secret_access_key         = `op read "op://Employee/aws pension-stg/Security/Secret access key"`.strip!
+    aws.access_key_id             = `op read "op://Security/aws pension-stg/Security/Access key ID"`.strip!
+    aws.secret_access_key         = `op read "op://Security/aws pension-stg/Security/Secret access key"`.strip!
     aws.keypair_name = Etc.getpwuid(Process.uid).name
     override.vm.allowed_synced_folder_types = [:rsync]
     override.vm.synced_folder ".", "/vagrant", type: :rsync, rsync__exclude: ['.git/','ansible-galaxy/'], disabled: false
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
     
     aws.region = AWS_REGION
     aws.security_groups = ["sg-077f8d7d58d420467"]
-    aws.ami = "ami-0f31ae1b67a5bf9f6"
+    aws.ami = "ami-0fa86d752d8b7d1ff"
     aws.instance_type = "r6g.medium"
     aws.subnet_id = "subnet-0331d92e81f166c9f"
     aws.associate_public_ip = true
