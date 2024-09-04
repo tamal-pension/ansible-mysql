@@ -4,7 +4,10 @@
 # vagrant up --provider=aws
 # vagrant destroy -f && vagrant up --provider=aws
 
-MAIN_SCRIPT_URL = "https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/default/main_amzn2023.sh"
+## optional:
+# export COMMON_COLLECTION_PATH='~/git/inqwise/ansible/ansible-common-collection'
+# export STACKTREK_COLLECTION_PATH='~/git/inqwise/ansible/ansible-stack-trek'
+
 TOPIC_NAME = "pre_playbook_errors"
 ACCOUNT_ID = "339712742264"
 AWS_REGION = "eu-west-1"
@@ -57,7 +60,8 @@ Vagrant.configure("2") do |config|
 
     
     aws.region = AWS_REGION
-    aws.security_groups = ["sg-077f8d7d58d420467"]
+    aws.security_groups = ["sg-077f8d7d58d420467","sg-0cf5612a2a3184aa2"]
+    # public-ssh, MysqlGroup
     aws.ami = "ami-0fa86d752d8b7d1ff"
     aws.instance_type = "r6g.medium"
     aws.subnet_id = "subnet-0331d92e81f166c9f"
