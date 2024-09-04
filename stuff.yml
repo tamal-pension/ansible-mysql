@@ -1,5 +1,6 @@
 ---
-- import_role:
+- name: AWS role
+  ansible.builtin.import_role:
     name: aws
   vars:
     dns_record_list:
@@ -14,8 +15,9 @@
       private_domain: "private_domain"
       root_password: "root_password"
 
-- include_role:
-    name: mysql
+- name: Mysql Role
+  ansible.builtin.import_role:
+    name: inqwise.stacktrek.mysql
   vars:
     mysql:
       datadir: "{{disk.mount}}/{{disk.data_folder}}"
