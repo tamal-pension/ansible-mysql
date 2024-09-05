@@ -13,15 +13,10 @@
     tags_facts:
       private_dns: "private_dns"
       private_domain: "private_domain"
-      root_password: "root_password"
+      root_password: "mysql_root_password"
 
 - name: Mysql Role
   ansible.builtin.import_role:
     name: inqwise.stacktrek.mysql
   vars:
-    mysql:
-      datadir: "{{disk.mount}}/{{disk.data_folder}}"
-      root_password: "{{ root_password }}"
-    ulimit:
-      user: "{{ app_user }}"
-  tags: logic
+    mysql_datadir: "{{disk.mount}}/{{disk.data_folder}}"

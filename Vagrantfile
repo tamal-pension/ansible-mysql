@@ -4,10 +4,7 @@
 # vagrant up --provider=aws
 # vagrant destroy -f && vagrant up --provider=aws
 
-## optional:
-# export COMMON_COLLECTION_PATH='~/git/inqwise/ansible/ansible-common-collection'
-# export STACKTREK_COLLECTION_PATH='~/git/inqwise/ansible/ansible-stack-trek'
-
+MAIN_SCRIPT_URL = "https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/default/main_amzn2023.sh"
 TOPIC_NAME = "pre_playbook_errors"
 ACCOUNT_ID = "339712742264"
 AWS_REGION = "eu-west-1"

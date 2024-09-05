@@ -22,5 +22,3 @@ disk:
     group: "{{ app_group }}"
     kms_key_id: "{{ disk_kms_key_id }}"
 private_ip: "{{ ansible_default_ipv4['address'] }}"
-access_file_url: "https://raw.githubusercontent.com/inqwise/ansible-automation-toolkit/master/access.yml"
-access_remote_base_path: "/ansible-mysql/vars/access.yml"
