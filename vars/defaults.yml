@@ -16,7 +16,8 @@ disk:
     name: /dev/sdb
     mount_options: defaults,noatime
     mount: /data
-    size: 100 
+    size: "{{ disk_size | default(100) }}" 
+    snapshot: "{{ disk_snapshot | default(omit) }}"
     fstype: xfs
     data_folder: lib
     user: "{{ app_user }}"
