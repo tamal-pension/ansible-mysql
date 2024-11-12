@@ -16,6 +16,7 @@
       root_password: "mysql_root_password"
       disk_snapshot: "disk_snapshot"
       disk_size: "disk_size"
+      datadir: "mysql_datadir"
 
 - name: Mysql Role
   ansible.builtin.import_role:
