@@ -23,6 +23,7 @@ disk:
     user: "{{ app_user }}"
     group: "{{ app_group }}"
     kms_key_id: "{{ disk_kms_key_id }}"
+    iops: "{{ disk_iops | default(omit) }}"
 private_ip: "{{ ansible_default_ipv4.address }}"
 aws_iam_role: "mysql-role"
 loki_base_url: "http://loki.{{ private_domain }}:3100"
